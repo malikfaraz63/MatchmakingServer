@@ -47,17 +47,21 @@ lobbyServer.post('/matchmaking', jsonParser, (req, res) => {
 });
 
 lobbyServer.get('/nicepage.css', (req, res) => {
-    let cssNicepage = renderer.prepare('lobby/nicepage.css', {});
     res.status(200)
         .set('Content-Type', 'text/css')
-        .send(cssNicepage);
+        .sendFile(__dirname + "/client/lobby/nicepage.css");
+});
+
+lobbyServer.get('/client.js', (req, res) => {
+    res.status(200)
+        .set('Content-Type', 'application/javascript')
+        .sendFile(__dirname + "/client/lobby/client.js")
 });
 
 lobbyServer.get('/lobby.css', (req, res) => {
-    let cssLobby = renderer.prepare('lobby/lobby.css', {});
     res.status(200)
         .set('Content-Type', 'text/css')
-        .send(cssLobby);
+        .sendFile(__dirname + "/client/lobby/lobby.css");
 });
 
 
